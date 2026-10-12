@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Circle Accent -->
+  <circle cx="100" cy="100" r="92" fill="url(#primaryGrad)" opacity="0.12"/>
+  <circle cx="100" cy="100" r="82" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Antenna -->
+  <line x1="100" y1="44" x2="100" y2="60" stroke="#4f46e5" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="100" cy="40" r="6" fill="#06b6d4" filter="url(#glow)"/>
+
+  <!-- Robot Ears / Side Sensors -->
+  <rect x="42" y="80" width="8" height="24" rx="4" fill="#6366f1"/>
+  <rect x="150" y="80" width="8" height="24" rx="4" fill="#6366f1"/>
+
+  <!-- Head Outline -->
+  <rect x="48" y="58" width="104" height="76" rx="26" fill="url(#bodyGrad)" stroke="#4f46e5" stroke-width="3"/>
+
+  <!-- Head Screen -->
+  <rect x="58" y="68" width="84" height="54" rx="16" fill="url(#screenGrad)"/>
+
+  <!-- Glowing Eyes -->
+  <circle cx="78" cy="90" r="8" fill="#06b6d4" filter="url(#glow)"/>
+  <circle cx="80" cy="88" r="3" fill="#ffffff"/>
+
+  <circle cx="122" cy="90" r="8" fill="#06b6d4" filter="url(#glow)"/>
+  <circle cx="124" cy="88" r="3" fill="#ffffff"/>
+
+  <!-- Friendly Smile Arc -->
+  <path d="M 88 106 Q 100 114 112 106" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" fill="transparent"/>
+
+  <!-- Neck -->
+  <rect x="88" y="134" width="24" height="10" rx="3" fill="#94a3b8"/>
+
+  <!-- Body Shoulders -->
+  <path d="M 60 144 Q 100 138 140 144 L 148 168 Q 100 174 52 168 Z" fill="url(#primaryGrad)"/>
+  <circle cx="100" cy="156" r="4" fill="#ffffff"/>
+</svg>

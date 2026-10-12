@@ -1,0 +1,300 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SmartBot - A responsive, intelligent rule-based chatbot website powered by Python Django and MySQL.">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>SmartBot - Intelligent Rule-Based Chatbot</title>
+
+    <!-- Google Fonts for Clean Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Hidden CSRF token element for Vanilla JS Fetch requests -->
+    {% csrf_token %}
+
+    <!-- A. NAVIGATION BAR -->
+    <header class="navbar-wrapper">
+        <nav class="navbar container">
+            <a href="#home" class="nav-brand">
+                <span class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="10" rx="4"/>
+                        <circle cx="9" cy="16" r="1.5" fill="currentColor"/>
+                        <circle cx="15" cy="16" r="1.5" fill="currentColor"/>
+                        <path d="M12 2v5M8 7h8"/>
+                    </svg>
+                </span>
+                <span class="brand-text">Smart<span class="brand-accent">Bot</span></span>
+            </a>
+
+            <!-- Mobile Navigation Toggle -->
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#chatbot" class="nav-link">Chatbot</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#chatbot" class="nav-btn">Chat Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- B. HERO SECTION -->
+    <section class="hero-section" id="home">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="hero-badge">
+                    <span class="badge-dot"></span> Rule-Based AI Assistant
+                </span>
+                <h1 class="hero-title">Meet Your <span class="gradient-text">Smart Assistant</span></h1>
+                <p class="hero-description">
+                    Chat with our intelligent rule-based chatbot. Instant replies, zero lag,
+                    and clean session-isolated memory powered by Python Django and MySQL.
+                </p>
+                <div class="hero-cta">
+                    <a href="#chatbot" class="btn btn-primary">
+                        <span>Start Chatting</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="#about" class="btn btn-outline">Learn Architecture</a>
+                </div>
+                <div class="hero-features">
+                    <div class="hero-feature-item">
+                        <span class="check-icon">✓</span> Responsive UI
+                    </div>
+                    <div class="hero-feature-item">
+                        <span class="check-icon">✓</span> MySQL Persistence
+                    </div>
+                    <div class="hero-feature-item">
+                        <span class="check-icon">✓</span> Instant Rules
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="avatar-card">
+                    <div class="avatar-glow"></div>
+                    <img src="{% static 'images/chatbot.svg' %}" alt="SmartBot Assistant Mascot" class="hero-mascot">
+                    <div class="floating-badge badge-top">
+                        <span class="badge-status-dot"></span> 24/7 Active
+                    </div>
+                    <div class="floating-badge badge-bottom">
+                        <span class="badge-icon">⚡</span> Sub-second response
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- C. CHATBOT INTERFACE & QUICK BUTTONS -->
+    <section class="chat-section" id="chatbot">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Live Chat Interface</h2>
+                <p class="section-subtitle">Experience deterministic, rule-based NLP in action.</p>
+            </div>
+
+            <div class="chat-wrapper">
+                <!-- Chat Window Container -->
+                <div class="chat-card">
+                    <!-- Chat Header -->
+                    <div class="chat-header">
+                        <div class="chat-header-info">
+                            <div class="chat-avatar">
+                                <img src="{% static 'images/chatbot.svg' %}" alt="Avatar">
+                            </div>
+                            <div class="chat-details">
+                                <h3 class="chat-bot-name">SmartBot Assistant</h3>
+                                <div class="chat-status">
+                                    <span class="status-indicator"></span>
+                                    <span class="status-text">Online</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-header-actions">
+                            <button id="clearChatBtn" class="btn-clear" title="Clear chat history">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                                <span>Clear Chat</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- D. QUICK MESSAGE BUTTONS -->
+                    <div class="quick-messages-bar">
+                        <span class="quick-label">Quick Prompts:</span>
+                        <div class="quick-buttons-list" id="quickButtons">
+                            <button class="quick-btn" data-message="Hello">Hello</button>
+                            <button class="quick-btn" data-message="How are you?">How are you?</button>
+                            <button class="quick-btn" data-message="What can you do?">What can you do?</button>
+                            <button class="quick-btn" data-message="Help">Help</button>
+                            <button class="quick-btn" data-message="Bye">Bye</button>
+                        </div>
+                    </div>
+
+                    <!-- Notification Alert Banner -->
+                    <div id="chatAlert" class="chat-alert hidden"></div>
+
+                    <!-- Chat History Body -->
+                    <div class="chat-body" id="chatWindow" role="log" aria-live="polite">
+                        <!-- Welcome message by default -->
+                        <div class="chat-message bot-message" data-msg-id="welcome">
+                            <div class="msg-avatar">
+                                <img src="{% static 'images/chatbot.svg' %}" alt="Bot">
+                            </div>
+                            <div class="msg-content">
+                                <div class="msg-bubble">
+                                    <p>Hi! Welcome to SmartBot. How can I help you today? You can test by typing greetings or using the quick prompt buttons above!</p>
+                                </div>
+                                <span class="msg-timestamp">Just now</span>
+                            </div>
+                        </div>
+
+                        <!-- Typing Indicator Element -->
+                        <div class="chat-message bot-message typing-indicator-wrapper hidden" id="typingIndicator">
+                            <div class="msg-avatar">
+                                <img src="{% static 'images/chatbot.svg' %}" alt="Bot">
+                            </div>
+                            <div class="msg-content">
+                                <div class="msg-bubble typing-bubble">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input Controls -->
+                    <form class="chat-input-area" id="chatForm">
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                id="messageInput"
+                                class="chat-input"
+                                placeholder="Type your message..."
+                                maxlength="500"
+                                autocomplete="off"
+                                required
+                            />
+                            <div class="input-char-count" id="charCount">0/500</div>
+                        </div>
+                        <button type="submit" id="sendBtn" class="btn-send" aria-label="Send message">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E. ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">About This Project</h2>
+                <p class="section-subtitle">
+                    A basic rule-based chatbot developed using HTML, CSS, JavaScript, Python Django, and MySQL.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">🎯</div>
+                    <h3>Rule-Based Engine</h3>
+                    <p>
+                        Pattern recognition and keyword analysis built with clean, modular Python in
+                        <code>chatbot_logic.py</code>, ensuring deterministic and reliable responses.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">🐍</div>
+                    <h3>Django Backend</h3>
+                    <p>
+                        Robust Django 4.2+ application handling RESTful JSON endpoints, session creation,
+                        CSRF security tokens, and comprehensive error validation.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">🐬</div>
+                    <h3>MySQL via XAMPP</h3>
+                    <p>
+                        Persistent storage using MySQL inside XAMPP. User queries and bot replies
+                        are chronologically archived with session-level isolation.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">🎨</div>
+                    <h3>Modern Vanilla UI</h3>
+                    <p>
+                        Engineered purely with HTML5, CSS3, and modern Vanilla JavaScript Fetch API.
+                        Zero third-party bloat, ensuring maximum performance and clarity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-card">
+                <div class="contact-text">
+                    <h2>Ready to Extend SmartBot?</h2>
+                    <p>
+                        Add custom intents, connect external knowledge bases, or customize UI themes.
+                        SmartBot's modular architecture makes additions straightforward.
+                    </p>
+                </div>
+                <div class="contact-actions">
+                    <a href="#chatbot" class="btn btn-primary">Try Chatbot Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- F. FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Smart<span class="brand-accent">Bot</span></h3>
+                    <p>Intelligent Rule-Based Chatbot Website.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SmartBot Assistant. All rights reserved. Developed with clean engineering practices.</p>
+                <a href="#home" class="back-to-top">Back to top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Bundle -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
